@@ -13,5 +13,3 @@ async def help_command (update: Update, context: contextTypes.DEFAULT_TYPE):
 
 async def custom_command (update: Update, context: contextTypes. DEFAULT_TYPE):
     await update.message.reply_text ('This is a custom command!')
-
-print("hihihihi")
