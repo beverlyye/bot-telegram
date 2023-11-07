@@ -1,9 +1,18 @@
+import threading
 from typing import Final
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
+bot_lock = threading.Lock()
+
 TOKEN: Final = '6581449693:AAEIpCBITfHLgqgDTTH8mr71ucD3gCzaGpU'
 BOT_USERNAME: Final = '@talk2m3bot'
+
+app = Application.builder().token(TOKEN).build()
+
+async def run_bot():
+    async with bot_lock:
+        print(f"Bot is running with token: {TOKEN}")
 
 
 #commands 
@@ -29,21 +38,22 @@ async def happy_command (update: Update, context: ContextTypes.DEFAULT_TYPE):
 #responses #buat handle respon dr bot
 
 def take_response(text: str) -> str:
-   processed: str = text.lower()
+    processed: str = text.lower()
    
-   if 'hi' in processed:
-        return 'hey there! what can i help you with? please select the command to tell story ;)'
-   
-   if 'im really sad, because' in processed:
-       return 'how come? but just so u know, for anything bad you faced, there is always the good impact that can makes you a better person'
-   
-   if 'im really happy, because...' in processed:
-       return 'glad to hear that! im also super hyped knowing you are having a good day, it felt really nice knowing you smile to the whole world :D'
-   
-   if 'thankyou' in processed:
-       return 'youre welcome! do text me if you want to tell another story'
-   
-   return 'pardon? i  cant understand what you wrote, sorry'
+    keywords = {
+        'sad': "I feel sorry for you. but just so u know, for anything bad you faced, there is always the good impact that can makes you a better person ",
+        'happy': "I'm glad to hear that! wow! im also super hyped knowing you are having a good day, it felt really nice knowing you smile to the whole world :D",
+        'thank': "youre welcome! do text me if you want to tell another story",
+        'upset': "I know you must felt so upset. Cheer up dear! sometimes you need to let it g, than the next day when you woke up, everythings gonna be an amazing day, you did great today, im so proud"
+        'funny': "HAHA, glad it makes your mood fly high up! its so funny ngl ><",
+        'tired': "Sometimes all we need is a good and effective rest! just close your eyes, take a deep breath and relax your mind"
+    }
+
+    for keyword, response in keywords.items():
+        if keyword in processed:
+            return response
+
+    return "pardon? i cant understand what you wrote, sorry"
 
 #messages #handle pesan yg akn di sendback ke user(priv/group)
 
@@ -72,6 +82,8 @@ async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 if __name__ == '__main__':
     print('Starting bot ...')
-    app = Application.builder().token(TOKEN).build()
 
-     
+    with bot_lock:
+        run_bot()
+
+ 
