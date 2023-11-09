@@ -45,7 +45,7 @@ def take_response(text: str) -> str:
         'happy': "I'm glad to hear that! wow! im also super hyped knowing you are having a good day, it felt really nice knowing you smile to the whole world :D",
         'thank': "youre welcome! do text me if you want to tell another story",
         'upset': "I know you must felt so upset. Cheer up dear! sometimes you need to let it g, than the next day when you woke up, everythings gonna be an amazing day, you did great today, im so proud",
-        'funny': "HAHA, glad it makes your mood fly high up! its so funny ngl ><",
+        'funny': "HAHAHA, glad it makes your mood fly high up!",
         'tired': 'Sometimes all we need is a good and effective rest! just close your eyes, take a deep breath and relax your mind'
     }
 
