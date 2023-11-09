@@ -44,9 +44,9 @@ def take_response(text: str) -> str:
         'sad': "I feel sorry for you. but just so u know, for anything bad you faced, there is always the good impact that can makes you a better person ",
         'happy': "I'm glad to hear that! wow! im also super hyped knowing you are having a good day, it felt really nice knowing you smile to the whole world :D",
         'thank': "youre welcome! do text me if you want to tell another story",
-        'upset': "I know you must felt so upset. Cheer up dear! sometimes you need to let it g, than the next day when you woke up, everythings gonna be an amazing day, you did great today, im so proud"
+        'upset': "I know you must felt so upset. Cheer up dear! sometimes you need to let it g, than the next day when you woke up, everythings gonna be an amazing day, you did great today, im so proud",
         'funny': "HAHA, glad it makes your mood fly high up! its so funny ngl ><",
-        'tired': "Sometimes all we need is a good and effective rest! just close your eyes, take a deep breath and relax your mind"
+        'tired': 'Sometimes all we need is a good and effective rest! just close your eyes, take a deep breath and relax your mind'
     }
 
     for keyword, response in keywords.items():
@@ -86,4 +86,21 @@ if __name__ == '__main__':
     with bot_lock:
         run_bot()
 
- 
+    #commands
+
+    app.add_handler(CommandHandler('start', start_command))
+    app.add_handler(CommandHandler('help' , help_command))
+    app.add_handler(CommandHandler('custom', custom_command))
+    app.add_handler(CommandHandler('upset', upset_command))
+    app.add_handler(CommandHandler('happy', happy_command))
+
+    #messages
+    app.add_handler(MessageHandler(filters.TEXT, take_message))
+
+    #errors
+    app.add_error_handler(error)
+
+    #polls the bot
+    print('Polling..')
+    app.run_polling(poll_interval=3)
+
