@@ -19,7 +19,7 @@ Make sure you have the following installed:
 
     ```bash
     git clone https://github.com/beverlyye/bot-telegram.git
-    cd 
+    cd Talk2MeBot
     ```
 
 2. Install Dependencies:
@@ -28,15 +28,23 @@ Make sure you have the following installed:
     pip install -r requirements.txt
     ```
 
-3. Configure Bot Token:
+3. Create a Telegram Bot:
 
-    - Open the `main.py` file.
-    - Replace the placeholder `6581449693:AAEIpCBITfHLgqgDTTH8mr71ucD3gCzaGpU` with this token
+    - Open the [BotFather](https://t.me/botfather) on Telegram.
+    - Use the `/newbot` command to create a new bot.
+    - Follow the instructions to choose a name and username for your bot.
+    - Once created, BotFather will provide you with a unique API token. Save this token for later.
+
+4. **Configure Bot Token:**
+
+    - Open the `talk2mebot.py` file.
+    - Replace the placeholder `TOKEN` with the API token obtained from BotFather.
+
 
 ## Running the Bot
 
     ```bash
-    python3 main.py
+    python3 Talk2m3bot.py
     ```
 
     The bot will start running, and you should see a message indicating that the bot is running with the provided token.
@@ -81,6 +89,9 @@ Feel free to contribute to the project by forking the repository, making improve
 
 Press `Ctrl + C` in the terminal where the bot is running to stop it.
 
+## Enjoy Conversations!
+
+Feel free to customize the bot further based on your preferences. If you have any questions or feedback, don't hesitate to reach out.
 
 ## Contributors
 
